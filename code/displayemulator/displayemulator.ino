@@ -13,15 +13,15 @@
 // or mail the author at martin@muc.ccc.de
 
 //     Arduino name / Arduino pin / Pin on VFD
-#define     d0             4    //Pin 15 on VFD
-#define     d1             5     //Pin 13 on VFD
-#define     d2             6     //Pin 11 on VFD
-#define     d3             7     //Pin 9 on VFD
-#define     d4             8     //Pin 7 on VFD
-#define     d5             9     //Pin 5 on VFD
-#define     d6            10     //Pin 3 on VFD
-#define     d7            11     //Pin 1 on VFD
-#define     x1            12     //Pin 17 on VFD
+#define     d0             5     //Pin 15 on VFD
+#define     d1             6     //Pin 13 on VFD
+#define     d2             7     //Pin 11 on VFD
+#define     d3             8     //Pin 9 on VFD
+#define     d4             9     //Pin 7 on VFD
+#define     d5            10     //Pin 5 on VFD
+#define     d6            11     //Pin 3 on VFD
+#define     d7            12     //Pin 1 on VFD
+#define     x1             4     //Pin 17 on VFD
 /*
 #define     x2            NC     //Pin 19 on VFD
 #define     x3            NC     //Pin 21 on VFD
@@ -41,9 +41,19 @@ void setup() {
   pinMode(d7, INPUT);
   pinMode(x1, INPUT);
   Serial.begin(9600);
+  Serial.write("Setup complete");
 }
 
 void loop() {
+  Serial.write(d0);
+  Serial.write(d1);
+  Serial.write(d2);
+  Serial.write(d3);
+  Serial.write(d4);
+  Serial.write(d5);
+  Serial.write(d6);
+  Serial.write(d7);
+  Serial.write(x1);
   if (digitalRead(x1) == 1) {
     byte v;
     bitWrite(v, 7, digitalRead(d0));

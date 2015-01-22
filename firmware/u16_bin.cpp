@@ -63,10 +63,10 @@ void em_sample(int n)
 		uint8_t op = read(index++);
 
 		if (op == 0x00) {
-			printf("Sample end.\n");
+			//printf("Sample end.\n");
 			goto sample_end;
 		} else if (op & 0b01000000) {
-			printf("Playing 256 nibbles\n");
+			//printf("Playing 256 nibbles\n");
 
 			for (int i = 0; i < 128; ++i) {
 				uint8_t nibbles = read(index++);
@@ -75,11 +75,11 @@ void em_sample(int n)
 				//fwrite(&nibbles, 1, 1, fo);
 			}
 		} else if ((op & 0b11000000) == 0) {
-			printf("Silence step\n");
+			//printf("Silence step\n");
 		} else if (op & 0b10000000) {
 			uint8_t operand = read(index++);
 			operand++;
-			printf("Playing %d nibbles\n", operand);
+			//printf("Playing %d nibbles\n", operand);
 
 			for (int i = 0; i < operand >> 1; ++i) {
 				uint8_t nibbles = read(index++);
@@ -96,7 +96,7 @@ void em_sample(int n)
 sample_end:
 	// fix the stream so it contains a bunch of nibbles
 	au_buffer_nibbles.clear();
-	for (auto d : au_buffer) {
+	for (uint8_t d : au_buffer) {
 		au_buffer_nibbles.push_back(d >> 4);
 		au_buffer_nibbles.push_back(d & 0x0F);
 	}
@@ -109,9 +109,9 @@ sample_end:
 		int16_t sample; // Current sample value
 
 		state = sample = data = 0;
-		for (data : au_buffer_nibbles)
+		for (uint8_t nibbles : au_buffer_nibbles)
 		{
-			data = data & 0x0f;
+			data = nibbles & 0x0f;
 
 			// update ADPCM
 

@@ -134,9 +134,9 @@ sample_end:
 
 int main(int argc, char **argv)
 {
-	fp = fopen("U16.BIN", "r");
+	fp = fopen(argv[1], "r");
 	if (fp == NULL) {
-		printf("Cannot open U16.BIN, errno = %d\n", errno);
+		printf("Cannot open %s, errno = %d\n", argv[1], errno);
 		return 1;
 	}
 

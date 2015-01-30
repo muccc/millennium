@@ -13,15 +13,15 @@
 // or mail the author at martin@muc.ccc.de
 
 //     Arduino name / Arduino pin / Pin on VFD
-#define     d0             0     //Pin 15 on VFD
-#define     d1             1     //Pin 13 on VFD
 #define     strobe         2     //Indicates new data
-#define     d2             3     //Pin 11 on VFD
-#define     d3             4     //Pin 9 on VFD
-#define     d4             5     //Pin 7 on VFD
-#define     d5             6     //Pin 5 on VFD
-#define     d6             7     //Pin 3 on VFD
-#define     d7             8     //Pin 1 on VFD
+#define     d0             3     //Pin 15 on VFD
+#define     d1             4     //Pin 13 on VFD
+#define     d2             5     //Pin 11 on VFD
+#define     d3             6     //Pin 9 on VFD
+#define     d4             7     //Pin 7 on VFD
+#define     d5             8     //Pin 5 on VFD
+#define     d6             9     //Pin 3 on VFD
+#define     d7             10     //Pin 1 on VFD
 /*
 #define     x1             4     //Pin 17 on VFD
 #define     x2            NC     //Pin 19 on VFD
@@ -58,7 +58,7 @@ void loop() {
 }
 
 void readInput() {
-  output = ((PORTD>>1)&0b01111100) | (PORTD&0b00000011) & (PORTB<<7);
+  output = (PORTB<<5) | (PORTD>>3);
   newData = true;
   
 }

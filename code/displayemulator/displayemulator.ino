@@ -33,9 +33,11 @@
 
 volatile unsigned char output=0;
 volatile boolean newData = false;
+volatile unsigned char b = 0;
+volatile unsigned char d = 0;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(strobe, INPUT);
   pinMode(d0, INPUT);
   pinMode(d1, INPUT);
@@ -45,20 +47,29 @@ void setup() {
   pinMode(d5, INPUT);
   pinMode(d6, INPUT);
   pinMode(d7, INPUT);
-  attachInterrupt(0, readInput, FALLING);
+  /*DDRD &=0b00000011;
+  DDRB &=0b11111000;
+  PORTD= 0b11111100;
+  PORTB= 0b00000111;*/
+  
+  attachInterrupt(0, readInput, RISING);
   Serial.write("Setup complete");
 }
 
 void loop() {
   if(newData){
+    //Serial.print(b,HEX);
+    //Serial.print(d,HEX);
     Serial.print(output);
+    Serial.print("\n");
     newData = false;
   }
   
 }
 
 void readInput() {
-  output = (PORTB<<5) | (PORTD>>3);
+  b = PINB;
+  d = PIND;
+  output = (b<<5) | (d>>3);
   newData = true;
-  
 }

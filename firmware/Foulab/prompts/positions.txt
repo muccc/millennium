@@ -1,0 +1,5 @@
+0x1E2D1 + 6000 Admin-Prompts
+0x68B3B + 8000 Customer English
+0x6B001 + 8000 Customer French
+0x6E001 + 8000 Customer Spanish
+0x71001 + 8000 Customer Japanese

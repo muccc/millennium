@@ -1,0 +1,2 @@
+U5:  st m27c2001  DIP32
+U10: QQ1SFK-01 unknown part but read as a st m27c4001  DIP32
